@@ -110,7 +110,7 @@
     {
       "from_program": "American Express Membership Rewards",
       "to_program": "Aeromexico Rewards",
-      "ratio": 0.63,
+      "ratio": 1.6,
       "category": "airline",
       "last_updated": "2026-09-13T21:35:00Z"
     },
@@ -144,7 +144,7 @@
     },
     {
       "from_program": "American Express Membership Rewards",
-      "to_program": "Cathay Asia Miles",
+      "to_program": "Cathay Pacific Asia Miles",
       "ratio": 1.0,
       "category": "airline",
       "last_updated": "2026-09-13T21:35:00Z"
@@ -159,7 +159,7 @@
     {
       "from_program": "American Express Membership Rewards",
       "to_program": "Emirates Skywards",
-      "ratio": 1.25,
+      "ratio": 0.8,
       "category": "airline",
       "last_updated": "2026-09-13T21:35:00Z"
     },
@@ -187,7 +187,7 @@
     {
       "from_program": "American Express Membership Rewards",
       "to_program": "JetBlue TrueBlue",
-      "ratio": 1.25,
+      "ratio": 0.8,
       "category": "airline",
       "last_updated": "2026-09-13T21:35:00Z"
     },
@@ -215,7 +215,7 @@
     {
       "from_program": "American Express Membership Rewards",
       "to_program": "Hilton Honors",
-      "ratio": 0.5,
+      "ratio": 2.0,
       "category": "hotel",
       "last_updated": "2026-09-13T21:35:00Z"
     },
@@ -263,7 +263,7 @@
     },
     {
       "from_program": "Capital One Rewards",
-      "to_program": "Cathay Asia Miles",
+      "to_program": "Cathay Pacific Asia Miles",
       "ratio": 1.0,
       "category": "airline",
       "last_updated": "2026-09-13T21:35:00Z"
@@ -271,7 +271,7 @@
     {
       "from_program": "Capital One Rewards",
       "to_program": "Emirates Skywards",
-      "ratio": 1.33,
+      "ratio": 0.75,
       "category": "airline",
       "last_updated": "2026-09-13T21:35:00Z"
     },
@@ -292,7 +292,7 @@
     {
       "from_program": "Capital One Rewards",
       "to_program": "JetBlue TrueBlue",
-      "ratio": 1.67,
+      "ratio": 0.6,
       "category": "airline",
       "last_updated": "2026-09-13T21:35:00Z"
     },
@@ -320,7 +320,7 @@
     {
       "from_program": "Capital One Rewards",
       "to_program": "Accor Live Limitless",
-      "ratio": 2.0,
+      "ratio": 0.5,
       "category": "hotel",
       "last_updated": "2026-09-13T21:35:00Z"
     },
@@ -361,7 +361,7 @@
     },
     {
       "from_program": "Citi ThankYou Rewards",
-      "to_program": "Cathay Asia Miles",
+      "to_program": "Cathay Pacific Asia Miles",
       "ratio": 1.0,
       "category": "airline",
       "last_updated": "2026-09-13T21:35:00Z"
@@ -369,7 +369,7 @@
     {
       "from_program": "Citi ThankYou Rewards",
       "to_program": "Emirates Skywards",
-      "ratio": 1.25,
+      "ratio": 0.8,
       "category": "airline",
       "last_updated": "2026-09-13T21:35:00Z"
     },
@@ -425,14 +425,14 @@
     {
       "from_program": "Citi ThankYou Rewards",
       "to_program": "Accor Live Limitless",
-      "ratio": 2.0,
+      "ratio": 0.5,
       "category": "hotel",
       "last_updated": "2026-09-13T21:35:00Z"
     },
     {
       "from_program": "Citi ThankYou Rewards",
       "to_program": "Choice Privileges",
-      "ratio": 0.5,
+      "ratio": 2.0,
       "category": "hotel",
       "last_updated": "2026-09-13T21:35:00Z"
     },

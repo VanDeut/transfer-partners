@@ -97,6 +97,7 @@
       "category": "airline",
       "aliases": [
         "all nippon airways",
+        "all nippon airways (ana)",
         "ana"
       ],
       "last_updated": "2026-09-13T21:30:00Z"
@@ -124,11 +125,12 @@
       "last_updated": "2026-09-13T21:30:00Z"
     },
     {
-      "program": "Cathay Asia Miles",
+      "program": "Cathay Pacific Asia Miles",
       "cents_per_point": 1.3,
       "category": "airline",
       "aliases": [
         "asia miles",
+        "cathay asia miles",
         "cathay pacific"
       ],
       "last_updated": "2026-09-13T21:30:00Z"
@@ -330,6 +332,158 @@
       "aliases": [
         "wyndham",
         "wyndham hotels & resorts"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Bank of America Rewards",
+      "cents_per_point": 1.0,
+      "category": "flexible",
+      "aliases": [
+        "bank of america",
+        "bofa"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Bilt Rewards",
+      "cents_per_point": 2.0,
+      "category": "flexible",
+      "aliases": [
+        "bilt"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Spirit Airlines",
+      "cents_per_point": 1.0,
+      "category": "airline",
+      "aliases": [
+        "spirit",
+        "spirit airlines"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Allegiant Air",
+      "cents_per_point": 1.0,
+      "category": "airline",
+      "aliases": [
+        "allegiant",
+        "allegiant air"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Hawaiian Airlines",
+      "cents_per_point": 1.0,
+      "category": "airline",
+      "aliases": [
+        "hawaiian",
+        "hawaiian airlines"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Lufthansa Miles & More",
+      "cents_per_point": 1.0,
+      "category": "airline",
+      "aliases": [
+        "lufthansa",
+        "miles & more"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Qatar Airways Privilege Club",
+      "cents_per_point": 1.0,
+      "category": "airline",
+      "aliases": [
+        "qatar",
+        "qatar airways",
+        "privilege club"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Japan Airlines Mileage Bank",
+      "cents_per_point": 1.0,
+      "category": "airline",
+      "aliases": [
+        "japan",
+        "japan airlines",
+        "jal",
+        "mileage bank"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Korean Air SkyPass",
+      "cents_per_point": 1.0,
+      "category": "airline",
+      "aliases": [
+        "korean",
+        "korean air",
+        "skypass"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Hertz Gold Plus",
+      "cents_per_point": 1.0,
+      "category": "car",
+      "aliases": [
+        "hertz"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Avis Preferred",
+      "cents_per_point": 1.0,
+      "category": "car",
+      "aliases": [
+        "avis",
+        "avis budget group"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Budget Car Rental",
+      "cents_per_point": 1.0,
+      "category": "car",
+      "aliases": [
+        "budget",
+        "budget car rental"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Enterprise Rent-A-Car",
+      "cents_per_point": 1.0,
+      "category": "car",
+      "aliases": [
+        "enterprise",
+        "enterprise rent-a-car"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "National Car Rental",
+      "cents_per_point": 1.0,
+      "category": "car",
+      "aliases": [
+        "national",
+        "national car rental"
+      ],
+      "last_updated": "2026-09-13T21:30:00Z"
+    },
+    {
+      "program": "Alamo Rent A Car",
+      "cents_per_point": 1.0,
+      "category": "car",
+      "aliases": [
+        "alamo",
+        "alamo rent a car"
       ],
       "last_updated": "2026-09-13T21:30:00Z"
     }
