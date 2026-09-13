@@ -136,20 +136,11 @@ jobs:
         if: steps.check_file.outputs.found == 'true'
         run: |
           git add roame-source-*.csv transfer-partners.json
-
-          # Check if there are changes
           if git diff --cached --quiet; then
-              echo "No changes to commit"
-              echo "::set-output name=committed::false"
+            echo "::set-output name=committed::false"
           else
-              git commit -m "Auto-sync: Download & update transfer rates from Roame
-
-- Downloaded latest Roame data
-- Updated transfer-partners.json with latest rates
-
-This is a fully automated sync via GitHub Actions.
-Co-Authored-By: Transfer Partners Bot <action@github.com>"
-              echo "::set-output name=committed::true"
+            git commit -m "Auto-sync: Download & update transfer rates from Roame - Updated transfer-partners.json"
+            echo "::set-output name=committed::true"
           fi
         continue-on-error: true
 
