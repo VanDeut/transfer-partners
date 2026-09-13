@@ -1,10 +1,58 @@
 # Automated Rate Syncing with GitHub Actions
 
-This guide explains how to set up automated syncing of transfer rates from Roame.
+This guide explains how to keep transfer rates up-to-date with Roame data.
 
-## Overview
+**Recommended Approach**: Download Roame data manually and use comparison scripts (safer, more reliable)  
+**Alternative**: Automated scraping with GitHub Actions (requires monitoring)
 
-The GitHub Actions workflow automatically:
+## 🎯 Recommended: Manual Download + Comparison
+
+**This is the safest and most straightforward approach:**
+
+### Workflow
+1. **Download fresh data** from Roame's website (use their download button)
+2. **Save to repo** as `roame-source-YYYY-MM-DD.csv`
+3. **Run comparison** script to detect changes
+4. **Apply updates** using `update_transfer.py`
+5. **Commit** changes with full audit trail
+
+### Steps
+
+```bash
+# 1. Download from https://roame.travel/transfer-partners-cheat-sheet
+# Save as: roame-source-2026-09-20.csv
+
+# 2. Compare with current data
+python3 scripts/compare_roame.py roame-source-2026-09-20.csv
+
+# 3. Script suggests update commands - run them:
+python3 update_transfer.py "Chase" "United" 0.8
+
+# 4. Validate
+./validate.sh
+
+# 5. Commit
+git add transfer-partners.json roame-source-2026-09-20.csv
+git commit -m "Sync with Roame data as of 2026-09-20"
+```
+
+### Advantages
+✅ **No scraping** = no legal concerns  
+✅ **Auditable** = you see exactly what Roame provided  
+✅ **Reliable** = doesn't break if Roame changes their site  
+✅ **Simple** = easy to troubleshoot  
+✅ **Version controlled** = git history of all changes  
+
+### Best Practice
+- **Weekly**: Quick check of Roame for major changes
+- **Monthly**: Full download and comparison
+- **Set calendar reminder**: So you don't forget updates
+
+---
+
+## Alternative: Automated GitHub Actions Scraping
+
+If you prefer automated daily updates, the GitHub Actions workflow automatically:
 - Runs daily at 9 AM UTC
 - Fetches the latest data from Roame Transfer Partners
 - Compares with your current JSON
