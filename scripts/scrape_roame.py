@@ -100,11 +100,9 @@ def parse_roame_table(html_content):
     try:
         soup = BeautifulSoup(html_content, 'html.parser')
 
-        # Find all table cells with data
-        # The structure has airlines/programs in rows and transfer partners in columns
-
         # Get all table rows
         tables = soup.find_all('table')
+
         if not tables:
             print("⚠️  No tables found, parsing text content instead...")
             return parse_from_text(html_content)
@@ -124,26 +122,12 @@ def parse_roame_table(html_content):
                 if text and text not in ['Airline/Program', 'Alliance', 'IATA', 'Also Bookable', 'Award Release']:
                     headers.append(text)
 
-        # Map known transfer partners to clean names
-        partner_map = {
-            'amexmembershipawards': 'American Express Membership Rewards',
-            'bilt': 'Bilt',
-            'capitalone': 'Capital One Rewards',
-            'chaseultimaterewards': 'Chase Ultimate Rewards',
-            'citi': 'Citi ThankYou Points',
-            'wellsfargo': 'Wells Fargo Rewards',
-            'marriottbonvoy': 'Marriott Bonvoy',
-            'worldofhyatt': 'World of Hyatt',
-            'ihgrewards': 'IHG Rewards',
-            'accor': 'Accor Live Limitless',
-            'choiceprivileges': 'Choice Privileges',
-            'brex': 'Brex Rewards',
-            'ramp': 'Ramp Rewards'
-        }
+        print(f"DEBUG: Extracted {len(headers)} headers from table")
 
-        # Extract data rows
+        # Check if tbody exists (HTML-rendered tables) or parse from text (JS-rendered)
         tbody = table.find('tbody')
         if tbody:
+            print("DEBUG: Found tbody in HTML, parsing table rows...")
             for tr in tbody.find_all('tr'):
                 cells = tr.find_all('td')
                 if len(cells) > 0:
@@ -154,11 +138,8 @@ def parse_roame_table(html_content):
                         continue
 
                     # Extract ratios from remaining cells
-                    # Cells after Award Release (skip first 5 columns typically)
                     for col_idx, cell in enumerate(cells[5:]):  # Skip first 5 metadata columns
                         cell_text = cell.get_text(strip=True)
-
-                        # Look for ratio patterns
                         ratio_match = re.search(r'(\d+(?:\.\d+)?):(\d+(?:\.\d+)?)', cell_text)
 
                         if ratio_match:
@@ -174,8 +155,10 @@ def parse_roame_table(html_content):
                                     'last_updated': datetime.utcnow().isoformat() + 'Z'
                                 }
                                 transfers.append(transfer)
-
-        return transfers
+            return transfers
+        else:
+            print("DEBUG: No tbody found in HTML (JavaScript-rendered), parsing text content instead...")
+            return parse_from_text(html_content)
 
     except Exception as e:
         print(f"⚠️  Error parsing HTML table: {e}")
@@ -186,11 +169,7 @@ def parse_from_text(text_content):
     """Parse data from plain text extraction of page."""
     transfers = []
 
-    # Split by airline/program blocks
-    # Pattern: look for program names followed by code and then ratio data
-
-    lines = text_content.split('\n')
-
+    # Known transfer partners in typical column order on the Roame page
     transfer_partners = [
         'American Express Membership Rewards',
         'Bilt',
@@ -208,53 +187,71 @@ def parse_from_text(text_content):
         'Avios'
     ]
 
-    i = 0
-    while i < len(lines):
-        line = lines[i].strip()
+    # Split text into lines
+    lines = text_content.split('\n')
 
-        # Look for program identifiers (usually have airline codes or specific keywords)
-        if any(keyword in line for keyword in ['Airlines', 'Airways', 'Club', 'Rewards', 'Plus', 'Miles']) and len(line) > 2:
-            program_name = line
+    # Look for program sections - they have a name followed by code, then ratios
+    current_program = None
+    program_buffer = []
 
-            # Collect ratios from next lines
-            ratios = []
-            j = i + 1
-            ratio_found = False
+    for i, line in enumerate(lines):
+        line_stripped = line.strip()
 
-            while j < min(i + 15, len(lines)):
-                next_line = lines[j].strip()
+        # Detect program names (contain specific keywords and IATA codes)
+        if any(kw in line for kw in ['Airlines', 'Airways', 'Club', 'Rewards', 'Plus', 'Miles', 'Mileage']) and len(line_stripped) > 3:
+            # Check if previous program has data
+            if current_program and program_buffer:
+                # Extract ratios from the buffer
+                ratios = []
+                for buffer_line in program_buffer:
+                    for match in re.finditer(r'(\d+\.?\d*):(\d+\.?\d*)', buffer_line):
+                        ratio_str = f"{match.group(1)}:{match.group(2)}"
+                        ratio = extract_ratio(ratio_str)
+                        if ratio is not None and ratio not in ratios:  # Avoid duplicates
+                            ratios.append(ratio)
 
-                # Find all ratio patterns
-                for match in re.finditer(r'(\d+\.?\d*):(\d+\.?\d*)', next_line):
-                    ratio_str = f"{match.group(1)}:{match.group(2)}"
-                    ratio = extract_ratio(ratio_str)
-                    if ratio is not None:
-                        ratios.append(ratio)
-                        ratio_found = True
+                # Create transfers for this program
+                for idx, ratio in enumerate(ratios):
+                    if idx < len(transfer_partners):
+                        transfer = {
+                            'from_program': transfer_partners[idx],
+                            'to_program': current_program,
+                            'ratio': ratio,
+                            'category': get_program_category(current_program),
+                            'last_updated': datetime.utcnow().isoformat() + 'Z'
+                        }
+                        transfers.append(transfer)
 
-                # Stop if we hit another program or empty section
-                if ratio_found and (
-                    any(kw in next_line for kw in ['Airlines', 'Airways', 'Club']) or
-                    (next_line == '' and j > i + 5)
-                ):
-                    break
+            # Start new program
+            current_program = line_stripped
+            program_buffer = []
 
-                j += 1
+        # Collect lines with potential ratio data
+        elif current_program and re.search(r'\d+:\d+', line):
+            program_buffer.append(line_stripped)
 
-            # Create transfer entries
-            for idx, ratio in enumerate(ratios):
-                if idx < len(transfer_partners):
-                    transfer = {
-                        'from_program': transfer_partners[idx],
-                        'to_program': program_name,
-                        'ratio': ratio,
-                        'category': get_program_category(program_name),
-                        'last_updated': datetime.utcnow().isoformat() + 'Z'
-                    }
-                    transfers.append(transfer)
+    # Don't forget the last program
+    if current_program and program_buffer:
+        ratios = []
+        for buffer_line in program_buffer:
+            for match in re.finditer(r'(\d+\.?\d*):(\d+\.?\d*)', buffer_line):
+                ratio_str = f"{match.group(1)}:{match.group(2)}"
+                ratio = extract_ratio(ratio_str)
+                if ratio is not None and ratio not in ratios:
+                    ratios.append(ratio)
 
-        i += 1
+        for idx, ratio in enumerate(ratios):
+            if idx < len(transfer_partners):
+                transfer = {
+                    'from_program': transfer_partners[idx],
+                    'to_program': current_program,
+                    'ratio': ratio,
+                    'category': get_program_category(current_program),
+                    'last_updated': datetime.utcnow().isoformat() + 'Z'
+                }
+                transfers.append(transfer)
 
+    print(f"DEBUG: Parsed {len(transfers)} transfers from text")
     return transfers
 
 def update_transfer_partners_json(transfers):
