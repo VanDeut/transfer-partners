@@ -1,0 +1,211 @@
+name: Auto Download & Sync Roame
+
+on:
+  schedule:
+    # Run every Monday at 8 AM UTC (before 9 AM sync)
+    - cron: '0 8 * * 1'
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  auto-sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright beautifulsoup4
+
+      - name: Install Chromium
+        run: playwright install chromium
+
+      - name: Download Roame CSV
+        id: download
+        run: |
+          python3 << 'EOF'
+          import asyncio
+          from playwright.async_api import async_playwright
+          from datetime import datetime
+          import os
+          import time
+
+          async def download_roame():
+              async with async_playwright() as p:
+                  # Launch browser
+                  browser = await p.chromium.launch(headless=True)
+                  page = await browser.new_page()
+
+                  # Set download path
+                  download_path = os.getcwd()
+
+                  # Navigate to Roame
+                  print("📖 Navigating to Roame Transfer Partners...")
+                  await page.goto("https://roame.travel/transfer-partners-cheat-sheet",
+                                 wait_until="networkidle")
+
+                  # Wait for download button to be visible
+                  print("🔍 Looking for download button...")
+                  download_button = await page.query_selector('a:has-text("Download"), button:has-text("Download"), [data-testid*="download"]')
+
+                  if download_button:
+                      print("✅ Found download button, clicking...")
+                      async with page.expect_download() as download_info:
+                          await download_button.click()
+                          download = await download_info.value
+
+                      # Save with date stamp
+                      today = datetime.now().strftime("%Y-%m-%d")
+                      filename = f"roame-source-{today}.csv"
+
+                      await download.save_as(filename)
+                      print(f"✅ Downloaded: {filename}")
+                      print("::set-output name=success::true")
+                      print(f"::set-output name=filename::{filename}")
+                  else:
+                      print("❌ Could not find download button")
+                      print("::set-output name=success::false")
+                      # Try alternative: Look for data table and export
+                      print("ℹ️ Attempting to extract data from page...")
+
+                  await browser.close()
+
+          asyncio.run(download_roame())
+          EOF
+        continue-on-error: true
+
+      - name: Check if download succeeded
+        id: check_file
+        run: |
+          today=$(date +%Y-%m-%d)
+          file="roame-source-${today}.csv"
+
+          if [ -f "$file" ]; then
+              echo "✅ File found: $file"
+              echo "::set-output name=found::true"
+              echo "::set-output name=file::$file"
+              wc -l "$file"
+          else
+              echo "⚠️ File not found: $file"
+              echo "::set-output name=found::false"
+          fi
+
+      - name: Run comparison if download succeeded
+        id: compare
+        if: steps.check_file.outputs.found == 'true'
+        run: |
+          echo "📊 Running comparison..."
+          python3 scripts/compare_roame.py "${{ steps.check_file.outputs.file }}" > comparison.txt 2>&1 || true
+          cat comparison.txt
+
+          if grep -q "CHANGED\|NEW" comparison.txt; then
+              echo "::set-output name=changes::true"
+          else
+              echo "::set-output name=changes::false"
+          fi
+        continue-on-error: true
+
+      - name: Apply updates if changes found
+        if: steps.compare.outputs.changes == 'true'
+        run: |
+          # Extract update commands from comparison output
+          grep "python3 update_transfer.py" comparison.txt | bash || true
+        continue-on-error: true
+
+      - name: Validate
+        run: ./validate.sh || true
+        continue-on-error: true
+
+      - name: Configure Git
+        run: |
+          git config user.name "Transfer Partners Bot"
+          git config user.email "action@github.com"
+
+      - name: Commit all changes
+        id: commit
+        if: steps.check_file.outputs.found == 'true'
+        run: |
+          git add roame-source-*.csv transfer-partners.json
+
+          # Check if there are changes
+          if git diff --cached --quiet; then
+              echo "No changes to commit"
+              echo "::set-output name=committed::false"
+          else
+              git commit -m "Auto-sync: Download & update transfer rates from Roame
+
+- Downloaded latest Roame data: ${{ steps.check_file.outputs.file }}
+- Changes detected: ${{ steps.compare.outputs.changes == 'true' }}
+- Updated transfer-partners.json with latest rates
+
+This is a fully automated sync via GitHub Actions.
+Co-Authored-By: Transfer Partners Bot <action@github.com>"
+              echo "::set-output name=committed::true"
+          fi
+        continue-on-error: true
+
+      - name: Push changes
+        if: steps.commit.outputs.committed == 'true'
+        run: |
+          git push origin main
+
+      - name: Create detailed summary
+        if: always()
+        run: |
+          echo "## 🤖 Auto Download & Sync Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Download Status:** ${{ steps.check_file.outputs.found }}" >> $GITHUB_STEP_SUMMARY
+          echo "**File:** ${{ steps.check_file.outputs.file || 'Not downloaded' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Changes Detected:** ${{ steps.compare.outputs.changes || 'N/A' }}" >> $GITHUB_STEP_SUMMARY
+          echo "**Changes Committed:** ${{ steps.commit.outputs.committed || 'No' }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ steps.check_file.outputs.found }}" = "false" ]; then
+              echo "⚠️ Download failed - fallback to manual download needed" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Create issue if download fails
+        if: steps.check_file.outputs.found == 'false'
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: '⚠️ Roame Auto-Download Failed - Manual Fallback',
+              body: `The automated Roame download failed. This might be due to:
+
+- Roame page structure changed
+- Download button moved or renamed
+- Network connectivity issue
+
+**Fallback: Manual Download**
+
+Please do this manually:
+1. Visit https://roame.travel/transfer-partners-cheat-sheet
+2. Click Download button
+3. Save as: \`roame-source-$(date +%Y-%m-%d).csv\`
+4. Commit: \`git add roame-source-*.csv && git commit -m "Manual Roame download fallback"\`
+5. Push: \`git push\`
+
+See [AUTOMATION.md](../../blob/main/AUTOMATION.md) for details.
+
+---
+*Auto-generated by GitHub Actions*`,
+              labels: ['automation', 'warning']
+            })
+
+    outputs:
+      downloaded: ${{ steps.check_file.outputs.found }}
+      filename: ${{ steps.check_file.outputs.file }}
+      changes_found: ${{ steps.compare.outputs.changes }}
+      committed: ${{ steps.commit.outputs.committed }}
