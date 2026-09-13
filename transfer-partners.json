@@ -1,492 +1,155 @@
 {
   "schema_version": "1.0.0",
-  "last_generated": "2026-09-13T00:00:00Z",
+  "last_generated": "2026-09-13T20:44:11.501560Z",
   "last_data_source": "https://roame.travel/transfer-partners-cheat-sheet",
-  "data_as_of": "2026-09-11T00:00:00Z",
+  "data_as_of": "2026-09-13T20:44:11.501568Z",
   "transfers": [
     {
-      "from_program": "American Express",
-      "to_program": "British Airways Executive Club",
+      "from_program": "American Express Membership Rewards",
+      "to_program": "American Airlines",
       "ratio": 1.0,
       "category": "airline",
-      "promo_bonus_pct": 30,
-      "promo_expires": "2026-10-11T23:59:59Z",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
+      "last_updated": "2026-09-13T20:44:11.498684Z"
     },
     {
-      "from_program": "American Express",
-      "to_program": "Iberia Plus",
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Alaska Airlines",
       "ratio": 1.0,
       "category": "airline",
-      "promo_bonus_pct": 30,
-      "promo_expires": "2026-10-11T23:59:59Z",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~2 days"
+      "last_updated": "2026-09-13T20:44:11.498822Z"
     },
     {
-      "from_program": "American Express",
-      "to_program": "Aer Lingus AerClub",
+      "from_program": "American Express Membership Rewards",
+      "to_program": "British Airways",
       "ratio": 1.0,
       "category": "airline",
-      "promo_bonus_pct": 30,
-      "promo_expires": "2026-10-11T23:59:59Z",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
+      "last_updated": "2026-09-13T20:44:11.498985Z"
     },
     {
-      "from_program": "American Express",
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Cathay Pacific",
+      "ratio": 1.25,
+      "category": "airline",
+      "last_updated": "2026-09-13T20:44:11.499132Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Delta",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T20:44:11.499467Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Virgin",
+      "ratio": 3.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T20:44:11.500607Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "United",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T20:44:11.500086Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "JetBlue",
+      "ratio": 1.25,
+      "category": "airline",
+      "last_updated": "2026-09-13T20:44:11.500342Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Southwest",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T20:44:11.500455Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
       "to_program": "Hilton Honors",
       "ratio": 0.5,
       "category": "hotel",
-      "promo_bonus_pct": 30,
-      "promo_expires": "2026-09-13T23:59:59Z",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
+      "last_updated": "2026-09-13T20:44:11.500791Z"
     },
     {
-      "from_program": "Chase",
-      "to_program": "American Airlines AAdvantage",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "United MileagePlus",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Southwest Rapid Rewards",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "British Airways Executive Club",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Marriott Bonvoy",
-      "ratio": 1.0,
+      "from_program": "Bilt",
+      "to_program": "Hilton Honors",
+      "ratio": 0.5,
       "category": "hotel",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~1-2 days"
+      "last_updated": "2026-09-13T20:44:11.500793Z"
     },
     {
-      "from_program": "Chase",
+      "from_program": "Capital One Rewards",
+      "to_program": "Hilton Honors",
+      "ratio": 0.5,
+      "category": "hotel",
+      "last_updated": "2026-09-13T20:44:11.500795Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
       "to_program": "World of Hyatt",
       "ratio": 1.0,
       "category": "hotel",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
+      "last_updated": "2026-09-13T20:44:11.500978Z"
     },
     {
-      "from_program": "Citi ThankYou",
-      "to_program": "American Airlines AAdvantage",
-      "ratio": 0.6,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Citi ThankYou",
-      "to_program": "United MileagePlus",
-      "ratio": 0.6,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Citi ThankYou",
-      "to_program": "British Airways Executive Club",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Citi ThankYou",
-      "to_program": "Cathay Pacific Asia Miles",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~3 days"
-    },
-    {
-      "from_program": "Capital One",
-      "to_program": "JetBlue TrueBlue",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Capital One",
-      "to_program": "Virgin Atlantic Flying Club",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "Delta SkyMiles",
-      "ratio": 0.6,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Air France Flying Blue",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Citi ThankYou",
-      "to_program": "Air France Flying Blue",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "Singapore Airlines KrisFlyer",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Singapore Airlines KrisFlyer",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~2 days"
-    },
-    {
-      "from_program": "Citi ThankYou",
-      "to_program": "Singapore Airlines KrisFlyer",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~2 days"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "Air Canada Aeroplan",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "Air Canada Aeroplan",
-      "ratio": 1.2,
-      "category": "airline",
-      "promo_bonus_pct": 20,
-      "promo_expires": "2026-10-03T23:59:59Z",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "IHG One Rewards",
+      "from_program": "Bilt",
+      "to_program": "World of Hyatt",
       "ratio": 1.0,
       "category": "hotel",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
+      "last_updated": "2026-09-13T20:44:11.500983Z"
     },
     {
-      "from_program": "American Express",
-      "to_program": "IHG One Rewards",
+      "from_program": "Capital One Rewards",
+      "to_program": "World of Hyatt",
       "ratio": 1.0,
       "category": "hotel",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
+      "last_updated": "2026-09-13T20:44:11.500984Z"
     },
     {
-      "from_program": "Chase",
-      "to_program": "Wyndham Rewards",
+      "from_program": "American Express Membership Rewards",
+      "to_program": "IHG Rewards",
       "ratio": 1.0,
       "category": "hotel",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
+      "last_updated": "2026-09-13T20:44:11.501118Z"
     },
     {
-      "from_program": "American Express",
-      "to_program": "Accor Live Limitless",
-      "ratio": 0.667,
+      "from_program": "Bilt",
+      "to_program": "IHG Rewards",
+      "ratio": 1.0,
       "category": "hotel",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
+      "last_updated": "2026-09-13T20:44:11.501119Z"
     },
     {
-      "from_program": "Citi ThankYou",
-      "to_program": "Accor Live Limitless",
-      "ratio": 0.5,
+      "from_program": "Capital One Rewards",
+      "to_program": "IHG Rewards",
+      "ratio": 1.0,
       "category": "hotel",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~2 days"
+      "last_updated": "2026-09-13T20:44:11.501121Z"
     },
     {
-      "from_program": "Capital One",
+      "from_program": "American Express Membership Rewards",
       "to_program": "Marriott Bonvoy",
       "ratio": 1.0,
       "category": "hotel",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~48 hrs"
+      "last_updated": "2026-09-13T20:44:11.501265Z"
     },
     {
-      "from_program": "American Express",
-      "to_program": "Cathay Pacific Asia Miles",
-      "ratio": 0.8,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Cathay Pacific Asia Miles",
+      "from_program": "Bilt",
+      "to_program": "Marriott Bonvoy",
       "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
+      "category": "hotel",
+      "last_updated": "2026-09-13T20:44:11.501267Z"
     },
     {
-      "from_program": "Citi ThankYou",
-      "to_program": "Japan Airlines JAL Mileage Bank",
-      "ratio": 0.75,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "Japan Airlines JAL Mileage Bank",
+      "from_program": "Capital One Rewards",
+      "to_program": "Marriott Bonvoy",
       "ratio": 1.0,
-      "category": "airline",
-      "promo_bonus_pct": 30,
-      "promo_expires": "2026-10-08T23:59:59Z",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "Qantas Frequent Flyer",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Qantas Frequent Flyer",
-      "ratio": 0.48,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Citi ThankYou",
-      "to_program": "Qantas Frequent Flyer",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~1-2 days"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "Qatar Airways Privilege Club",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Qatar Airways Privilege Club",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Citi ThankYou",
-      "to_program": "Qatar Airways Privilege Club",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Emirates Skywards",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "Emirates Skywards",
-      "ratio": 0.8,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Citi ThankYou",
-      "to_program": "Emirates Skywards",
-      "ratio": 0.8,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Etihad Guest",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~1 day"
-    },
-    {
-      "from_program": "Citi ThankYou",
-      "to_program": "Etihad Guest",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Virgin Atlantic Flying Club",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "Virgin Atlantic Flying Club",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Citi ThankYou",
-      "to_program": "Virgin Atlantic Flying Club",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Avianca LifeMiles",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "Avianca LifeMiles",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Citi ThankYou",
-      "to_program": "Avianca LifeMiles",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "ANA Mileage Club",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~2-3 days"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "ANA Mileage Club",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~2-3 days"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Alaska Airlines Atmos Rewards",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~1 day"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "Alaska Airlines Atmos Rewards",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~1 day"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "JetBlue TrueBlue",
-      "ratio": 0.8,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "American Express",
-      "to_program": "JetBlue TrueBlue",
-      "ratio": 0.8,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
-    },
-    {
-      "from_program": "Chase",
-      "to_program": "Aeromexico Rewards",
-      "ratio": 0.625,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "~2 days"
-    },
-    {
-      "from_program": "Citi ThankYou",
-      "to_program": "Aeromexico Rewards",
-      "ratio": 1.0,
-      "category": "airline",
-      "last_updated": "2026-09-11T00:00:00Z",
-      "transfer_speed": "Instant"
+      "category": "hotel",
+      "last_updated": "2026-09-13T20:44:11.501268Z"
     }
   ]
 }
