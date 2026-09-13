@@ -1,64 +1,449 @@
 {
   "schema_version": "1.0.0",
-  "last_generated": "2026-09-13T21:02:33.244428Z",
-  "last_data_source": "https://roame.travel/transfer-partners-cheat-sheet",
-  "data_as_of": "2026-09-13T21:02:33.244437Z",
+  "last_generated": "2026-09-13T21:35:00.000000Z",
+  "last_data_source": "manual",
+  "data_as_of": "2026-09-13T21:35:00.000000Z",
   "transfers": [
     {
-      "from_program": "American Express Membership Rewards",
-      "to_program": "Miles",
-      "ratio": 3.0,
-      "category": "airline",
-      "last_updated": "2026-09-13T21:02:33.243288Z"
-    },
-    {
-      "from_program": "American Express Membership Rewards",
-      "to_program": "Rapid Rewards",
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "Aer Lingus",
       "ratio": 1.0,
       "category": "airline",
-      "last_updated": "2026-09-13T21:02:33.243461Z"
+      "last_updated": "2026-09-13T21:35:00.000000Z"
     },
     {
-      "from_program": "American Express Membership Rewards",
-      "to_program": "Choice",
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "Air Canada Aeroplan",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "Avios",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "Flying Blue",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "Iberia",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "JetBlue TrueBlue",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "Singapore KrisFlyer",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "Southwest Rapid Rewards",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "United MileagePlus",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "Virgin Atlantic Flying Club",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "World of Hyatt",
       "ratio": 1.0,
       "category": "hotel",
-      "last_updated": "2026-09-13T21:02:33.243668Z"
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "IHG One Rewards",
+      "ratio": 1.0,
+      "category": "hotel",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "Marriott Bonvoy",
+      "ratio": 1.0,
+      "category": "hotel",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Chase Ultimate Rewards",
+      "to_program": "Wyndham Rewards",
+      "ratio": 1.0,
+      "category": "hotel",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
     },
     {
       "from_program": "American Express Membership Rewards",
-      "to_program": "Hilton",
+      "to_program": "Aer Lingus",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Aeromexico Rewards",
+      "ratio": 0.63,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Air Canada Aeroplan",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "ANA Mileage Club",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Avianca Lifemiles",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Avios",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Cathay Asia Miles",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Delta SkyMiles",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Emirates Skywards",
+      "ratio": 1.25,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Etihad Guest",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Flying Blue",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Iberia",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "JetBlue TrueBlue",
+      "ratio": 1.25,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Qantas Frequent Flyer",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Singapore KrisFlyer",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Virgin Atlantic Flying Club",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "American Express Membership Rewards",
+      "to_program": "Hilton Honors",
       "ratio": 0.5,
       "category": "hotel",
-      "last_updated": "2026-09-13T21:02:33.243736Z"
+      "last_updated": "2026-09-13T21:35:00.000000Z"
     },
     {
       "from_program": "American Express Membership Rewards",
-      "to_program": "Hyatt",
+      "to_program": "Marriott Bonvoy",
       "ratio": 1.0,
       "category": "hotel",
-      "last_updated": "2026-09-13T21:02:33.243800Z"
+      "last_updated": "2026-09-13T21:35:00.000000Z"
     },
     {
       "from_program": "American Express Membership Rewards",
-      "to_program": "IHG",
+      "to_program": "Choice Privileges",
       "ratio": 1.0,
       "category": "hotel",
-      "last_updated": "2026-09-13T21:02:33.243854Z"
+      "last_updated": "2026-09-13T21:35:00.000000Z"
     },
     {
-      "from_program": "American Express Membership Rewards",
-      "to_program": "Marriott",
+      "from_program": "Capital One Rewards",
+      "to_program": "Aeromexico Rewards",
       "ratio": 1.0,
-      "category": "hotel",
-      "last_updated": "2026-09-13T21:02:33.243949Z"
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
     },
     {
-      "from_program": "American Express Membership Rewards",
-      "to_program": "Wyndham",
+      "from_program": "Capital One Rewards",
+      "to_program": "Air Canada Aeroplan",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "Avianca Lifemiles",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "Avios",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "Cathay Asia Miles",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "Emirates Skywards",
+      "ratio": 1.33,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "Etihad Guest",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "Flying Blue",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "JetBlue TrueBlue",
+      "ratio": 1.67,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "Qantas Frequent Flyer",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "Singapore KrisFlyer",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "Turkish Airlines Miles&Smiles",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "Accor Live Limitless",
+      "ratio": 2.0,
+      "category": "hotel",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "Choice Privileges",
       "ratio": 1.0,
       "category": "hotel",
-      "last_updated": "2026-09-13T21:02:33.244055Z"
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Capital One Rewards",
+      "to_program": "Wyndham Rewards",
+      "ratio": 1.0,
+      "category": "hotel",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Aeromexico Rewards",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "American Airlines AAdvantage",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Avianca Lifemiles",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Cathay Asia Miles",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Emirates Skywards",
+      "ratio": 1.25,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Etihad Guest",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Flying Blue",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "JetBlue TrueBlue",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Qantas Frequent Flyer",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Singapore KrisFlyer",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Turkish Airlines Miles&Smiles",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Virgin Atlantic Flying Club",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Accor Live Limitless",
+      "ratio": 2.0,
+      "category": "hotel",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Choice Privileges",
+      "ratio": 0.5,
+      "category": "hotel",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
+    },
+    {
+      "from_program": "Citi ThankYou Rewards",
+      "to_program": "Wyndham Rewards",
+      "ratio": 0.8,
+      "category": "hotel",
+      "last_updated": "2026-09-13T21:35:00.000000Z"
     }
   ]
 }
