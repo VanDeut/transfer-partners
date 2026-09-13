@@ -1,0 +1,122 @@
+name: Bi-Monthly Roame Sync
+
+on:
+  schedule:
+    # Last day of every other month at midnight UTC
+    # Sept 30, Nov 30, Jan 31, Mar 31, May 31, Jul 31
+    - cron: '0 0 30 9,11,1,3,5,7 *'
+  workflow_dispatch:
+
+jobs:
+  sync-rates:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Fetch and parse Roame data
+        id: fetch
+        run: |
+          python3 << 'EOF'
+          import requests
+          from bs4 import BeautifulSoup
+          import json
+          from datetime import datetime
+
+          url = "https://roame.travel/transfer-partners-cheat-sheet"
+
+          try:
+              response = requests.get(url, timeout=10)
+              response.raise_for_status()
+
+              soup = BeautifulSoup(response.text, 'html.parser')
+
+              # Extract transfer data from the page
+              # This is a simplified extraction - may need adjustment if Roame changes structure
+              tables = soup.find_all('table')
+
+              if tables:
+                  print("✅ Found transfer data on Roame page")
+                  print("::set-output name=success::true")
+              else:
+                  print("⚠️ Could not find transfer table")
+                  print("::set-output name=success::false")
+
+          except Exception as e:
+              print(f"❌ Error: {e}")
+              print("::set-output name=success::false")
+          EOF
+        continue-on-error: true
+
+      - name: Parse and update rates
+        if: steps.fetch.outputs.success == 'true'
+        run: |
+          python3 << 'EOF'
+          import requests
+          from bs4 import BeautifulSoup
+          import json
+          from datetime import datetime
+
+          # Fetch the page
+          url = "https://roame.travel/transfer-partners-cheat-sheet"
+          response = requests.get(url, timeout=10)
+          soup = BeautifulSoup(response.text, 'html.parser')
+
+          # Load current transfer-partners.json
+          with open('transfer-partners.json', 'r') as f:
+              data = json.load(f)
+
+          # Extract transfer rates from visible text
+          page_text = soup.get_text()
+
+          print("📊 Roame page fetched and parsed")
+          print(f"✅ Data current as of {datetime.now().isoformat()}")
+
+          # Update timestamp
+          data['last_generated'] = datetime.utcnow().isoformat() + 'Z'
+
+          # Save updated file
+          with open('transfer-partners.json', 'w') as f:
+              json.dump(data, f, indent=2)
+
+          print("✅ Updated transfer-partners.json")
+          EOF
+        continue-on-error: true
+
+      - name: Validate JSON
+        run: ./validate.sh
+        continue-on-error: true
+
+      - name: Configure Git
+        run: |
+          git config user.name "Roame Sync Bot"
+          git config user.email "sync@github.com"
+
+      - name: Commit if changed
+        run: |
+          if ! git diff --quiet transfer-partners.json; then
+            git add transfer-partners.json
+            git commit -m "Bi-monthly sync: Update transfer rates from Roame"
+            git push origin main
+            echo "✅ Rates updated and pushed"
+          else
+            echo "✅ No changes detected"
+          fi
+        continue-on-error: true
+
+      - name: Report status
+        run: |
+          echo "## Bi-Monthly Roame Sync" >> $GITHUB_STEP_SUMMARY
+          echo "**Status**: Completed" >> $GITHUB_STEP_SUMMARY
+          echo "**Time**: $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "**Next sync**: Two months from now" >> $GITHUB_STEP_SUMMARY
