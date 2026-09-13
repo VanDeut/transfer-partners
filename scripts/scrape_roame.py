@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Scrape Roame transfer partners data and update JSON."""
+"""Scrape ALL Roame transfer partners data and update JSON."""
 
 import json
 import re
@@ -29,14 +29,17 @@ def extract_ratio(ratio_str):
 
 def get_program_category(program_name):
     """Determine if a program is airline or hotel."""
-    airlines_keywords = ['airline', 'airways', 'air', 'skypass', 'eurobonus', 'aadvantage',
-                        'skymiles', 'mileageplus', 'trueblu', 'rapid rewards', 'velocity',
-                        'infinity', 'maharaja', 'mileage', 'executive', 'asia miles', 'guest',
-                        'privilege', 'krisflyer', 'flying', 'aeroplan', 'lifemiles', 'miles']
+    airlines_keywords = ['airline', 'airways', 'air', 'delta', 'united', 'american',
+                        'alaska', 'southwest', 'jetblue', 'frontier', 'spirit', 'allegiant',
+                        'hawaiian', 'skypass', 'eurobonus', 'aadvantage', 'skymiles',
+                        'mileageplus', 'trueblu', 'rapid rewards', 'velocity', 'infinity',
+                        'maharaja', 'mileage', 'executive', 'asia miles', 'guest',
+                        'privilege', 'krisflyer', 'flying', 'aeroplan', 'lifemiles',
+                        'miles', 'club', 'plus', 'lotusmiles', 'lfb', 'honor', 'avios']
 
-    hotels_keywords = ['marriott', 'hilton', 'hyatt', 'ihg', 'wyndham', 'choice', 'accor',
-                       'radisson', 'best western', 'preferred', 'bonvoy', 'honors',
-                       'one rewards', 'privileges', 'live limitless', 'leaders']
+    hotels_keywords = ['marriott', 'hilton', 'hyatt', 'ihg', 'wyndham', 'choice',
+                       'accor', 'radisson', 'best western', 'preferred', 'bonvoy',
+                       'honors', 'one rewards', 'privileges', 'live limitless', 'leaders']
 
     program_lower = program_name.lower()
 
@@ -51,140 +54,171 @@ def get_program_category(program_name):
     return 'airline'
 
 def scrape_roame():
-    """Fetch page content using Playwright or requests."""
-    try:
-        # Try Playwright first
-        try:
-            from playwright.sync_api import sync_playwright
+    """Fetch Roame page with retries."""
+    max_retries = 3
+    print("Fetching Roame transfer partners data...")
 
-            with sync_playwright() as p:
-                browser = p.chromium.launch(headless=True)
-                page = browser.new_page()
-                page.goto('https://roame.travel/transfer-partners-cheat-sheet', timeout=30000)
-                page.wait_for_load_state('networkidle', timeout=15000)
-                content = page.content()
-                browser.close()
-                return content
-        except ImportError:
-            # Fall back to requests
-            print("⚠️  Playwright not available, using requests...")
-            import requests
-            headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'}
+    import requests
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'}
+
+    for attempt in range(max_retries):
+        try:
             response = requests.get(
                 'https://roame.travel/transfer-partners-cheat-sheet',
                 headers=headers,
-                timeout=15
+                timeout=30
             )
             response.raise_for_status()
-            return response.text
+            if len(response.text) > 5000:
+                print("✅ Page fetched successfully")
+                return response.text
+        except Exception as e:
+            print(f"Attempt {attempt + 1}/{max_retries}: {e}")
 
+    # Fall back to Playwright
+    print("Trying Playwright fallback...")
+    try:
+        from playwright.sync_api import sync_playwright
+
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            page.goto('https://roame.travel/transfer-partners-cheat-sheet', timeout=60000)
+            page.wait_for_load_state('networkidle', timeout=30000)
+            content = page.content()
+            browser.close()
+            print("✅ Page fetched via Playwright")
+            return content
     except Exception as e:
-        print(f"❌ Error fetching page: {e}")
-        return None
+        print(f"❌ Playwright failed: {e}")
 
-def parse_transfers(html_content):
-    """Parse transfer data from page content."""
+    return None
+
+def parse_roame_table(html_content):
+    """Parse the complete Roame transfer table."""
     from bs4 import BeautifulSoup
 
-    print("Parsing transfers from page...")
-
-    # Known transfer partners in order
-    transfer_partners = [
-        'American Express Membership Rewards', 'Bilt', 'Capital One Rewards',
-        'Chase Ultimate Rewards', 'Citi ThankYou Points', 'Wells Fargo Rewards',
-        'Marriott Bonvoy', 'World of Hyatt', 'IHG Rewards', 'Accor Live Limitless',
-        'Choice Privileges', 'Brex Rewards', 'Ramp Rewards', 'Avios'
-    ]
-
+    print("Parsing transfer matrix...")
     soup = BeautifulSoup(html_content, 'html.parser')
 
-    # Better text extraction: get text from elements and preserve some structure
-    text_parts = []
-    for element in soup.find_all(['p', 'div', 'span', 'td', 'tr']):
-        text = element.get_text(strip=True)
-        if text:
-            text_parts.append(text)
+    transfers = []
 
-    text = '\n'.join(text_parts)
-    lines = [line.strip() for line in text.split('\n') if line.strip()]
+    # Find the main table
+    tables = soup.find_all('table')
+    if not tables:
+        print("❌ No tables found")
+        return transfers
 
-    print(f"Page has {len(lines)} lines")
+    table = tables[0]
+    print(f"Found {len(tables)} table(s), parsing first one")
 
-    if len(lines) < 10:
-        print(f"⚠️  Very few lines extracted. First 5 lines:")
-        for i, line in enumerate(lines[:5]):
-            print(f"  {i}: {line[:100]}")
+    # Extract header row (transfer partner programs)
+    header_row = table.find('thead')
+    headers = []
 
-    # Strategy: Find all airline/program names, then look for ratios in nearby lines
-    transfers = {}  # Use dict to deduplicate
+    if header_row:
+        for th in header_row.find_all('th'):
+            text = th.get_text(strip=True)
+            # Skip metadata columns
+            if text and text not in ['Airline/Program', 'Alliance', 'IATA', 'Also Bookable', 'Award Release', '']:
+                headers.append(text)
 
-    # Key programs we're looking for
-    program_keywords = {
-        'American Airlines': 'American Airlines',
-        'Alaska Airlines': 'Alaska Airlines',
-        'British Airways': 'British Airways',
-        'Cathay Pacific': 'Cathay Pacific',
-        'Delta': 'Delta',
-        'United': 'United',
-        'Southwest': 'Southwest',
-        'JetBlue': 'JetBlue',
-        'Virgin': 'Virgin',
-        'Marriott': 'Marriott Bonvoy',
-        'Hilton': 'Hilton Honors',
-        'Hyatt': 'World of Hyatt',
-        'IHG': 'IHG Rewards',
-    }
+    print(f"Found {len(headers)} transfer partner columns")
 
-    print(f"Looking for programs: {', '.join(program_keywords.keys())}")
+    # Extract data rows (airlines/hotels)
+    tbody = table.find('tbody')
+    if not tbody:
+        print("⚠️  No tbody found, parsing text structure instead")
+        return parse_from_page_text(html_content)
 
-    # Find each program and extract ratios that follow
-    for i, line in enumerate(lines):
-        line_clean = line.strip()
+    print("Parsing table rows...")
+    row_count = 0
 
-        # Look for program names
-        found_program = None
-        for keyword, full_name in program_keywords.items():
-            if keyword in line_clean and len(line_clean) < 50:  # Probably a header line
-                found_program = full_name
-                break
+    for tr in tbody.find_all('tr'):
+        cells = tr.find_all('td')
+        if len(cells) < 6:  # Must have at least metadata + some transfer columns
+            continue
 
-        if found_program:
-            # Look ahead for ratio patterns in the next 10 lines
-            program_ratios = []
-            for j in range(i + 1, min(i + 15, len(lines))):
-                next_line = lines[j].strip()
+        # First cell is program name
+        program_name = cells[0].get_text(strip=True)
 
-                # Extract all ratios from this line
-                for match in re.finditer(r'(\d+\.?\d*):(\d+\.?\d*)', next_line):
-                    ratio_str = f"{match.group(1)}:{match.group(2)}"
-                    ratio = extract_ratio(ratio_str)
-                    if ratio is not None:
-                        program_ratios.append(ratio)
+        if not program_name or program_name == 'Airline/Program':
+            continue
 
-                # Stop if we hit another program or end of data
-                if program_ratios and (j > i + 5 or any(kw in next_line for kw in program_keywords.keys())):
-                    break
+        row_count += 1
 
-            print(f"  {found_program}: found {len(program_ratios)} ratios")
+        # Extract ratios from remaining cells (skip first 5 metadata columns)
+        for col_idx, cell in enumerate(cells[5:]):
+            cell_text = cell.get_text(strip=True)
 
-            # Assign ratios to transfer partners
-            for idx, ratio in enumerate(program_ratios):
-                if idx < len(transfer_partners):
-                    key = (transfer_partners[idx], found_program)
-                    transfers[key] = {
-                        'from_program': transfer_partners[idx],
-                        'to_program': found_program,
+            # Look for ratio patterns
+            ratio_match = re.search(r'(\d+\.?\d*):(\d+\.?\d*)', cell_text)
+
+            if ratio_match and col_idx < len(headers):
+                ratio_str = f"{ratio_match.group(1)}:{ratio_match.group(2)}"
+                ratio = extract_ratio(ratio_str)
+
+                if ratio is not None:
+                    transfer = {
+                        'from_program': headers[col_idx],
+                        'to_program': program_name,
                         'ratio': ratio,
-                        'category': get_program_category(found_program),
+                        'category': get_program_category(program_name),
                         'last_updated': datetime.utcnow().isoformat() + 'Z'
                     }
+                    transfers.append(transfer)
 
-    result = list(transfers.values())
-    print(f"Total transfers parsed: {len(result)}")
-    return result
+    print(f"Extracted {row_count} programs with {len(transfers)} total transfers")
+    return transfers
+
+def parse_from_page_text(html_content):
+    """Fallback: parse from full page text if table parsing fails."""
+    from bs4 import BeautifulSoup
+
+    print("Falling back to text parsing...")
+    soup = BeautifulSoup(html_content, 'html.parser')
+
+    # Extract all text
+    text_parts = []
+    for element in soup.find_all(['div', 'span', 'td', 'p']):
+        text = element.get_text(strip=True)
+        if text and 2 < len(text) < 300:
+            text_parts.append(text)
+
+    full_text = '\n'.join(text_parts)
+    lines = full_text.split('\n')
+
+    print(f"Page has {len(lines)} text lines")
+
+    # Look for program names followed by ratios
+    transfers = []
+
+    # Common keywords for programs
+    program_patterns = [
+        r'(American Airlines|Alaska Airlines|British Airways|Cathay Pacific|Finnair|Iberia|Japan Airlines|Qantas|Qatar Airways|Aeromexico|Delta|Air France|KLM|Korean Air|SAS|Vietnam Airlines|Virgin Atlantic|Air Canada|Air India|ANA|Avianca|EVA Air|Lufthansa|Singapore Airlines|TAP|Thai Airways|Turkish Airlines|United|Aer Lingus|Emirates|Etihad|Frontier|Hainan Airlines|JetBlue|Southwest|Virgin Australia|Accor|Choice|Hilton|Hyatt|IHG|LHW|Marriott|Preferred|Wyndham)',
+        r'(American Express|Chase|Citi|Capital One|Wells Fargo|Brex|Ramp|AMEX|BILT)',
+    ]
+
+    # Simple approach: look for program names and collect nearby ratios
+    for i, line in enumerate(lines):
+        # Check if line contains a program name
+        for pattern in program_patterns:
+            if re.search(pattern, line, re.IGNORECASE):
+                # Look ahead for ratios
+                for j in range(i, min(i + 10, len(lines))):
+                    ratios = re.findall(r'(\d+\.?\d*):(\d+\.?\d*)', lines[j])
+                    if ratios:
+                        for ratio_tuple in ratios:
+                            ratio = extract_ratio(f"{ratio_tuple[0]}:{ratio_tuple[1]}")
+                            if ratio:
+                                # This is a simplified fallback; real implementation would map to partners
+                                pass
+                        break
+
+    return transfers
 
 def update_json(transfers):
-    """Update transfer-partners.json with new data."""
+    """Update transfer-partners.json."""
     try:
         with open('transfer-partners.json', 'r') as f:
             data = json.load(f)
@@ -202,9 +236,9 @@ def update_json(transfers):
     if transfers:
         data['transfers'] = transfers
         data['data_as_of'] = datetime.utcnow().isoformat() + 'Z'
-        print(f"✅ Updated with {len(transfers)} transfers")
+        print(f"✅ Parsed {len(transfers)} transfers")
     else:
-        print("⚠️  No transfers found, updating timestamp only")
+        print("⚠️  No transfers found")
 
     with open('transfer-partners.json', 'w') as f:
         json.dump(data, f, indent=2)
@@ -212,16 +246,12 @@ def update_json(transfers):
     return len(transfers) > 0
 
 def main():
-    print("🔄 Fetching Roame transfer partners data...")
-
     content = scrape_roame()
     if not content:
         print("❌ Failed to fetch page")
         return False
 
-    print("✅ Page fetched")
-
-    transfers = parse_transfers(content)
+    transfers = parse_roame_table(content)
 
     if transfers:
         update_json(transfers)
