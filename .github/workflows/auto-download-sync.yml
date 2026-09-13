@@ -144,8 +144,7 @@ jobs:
           else
               git commit -m "Auto-sync: Download & update transfer rates from Roame
 
-- Downloaded latest Roame data: ${{ steps.check_file.outputs.file }}
-- Changes detected: ${{ steps.compare.outputs.changes == 'true' }}
+- Downloaded latest Roame data
 - Updated transfer-partners.json with latest rates
 
 This is a fully automated sync via GitHub Actions.
