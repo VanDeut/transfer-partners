@@ -21,54 +21,12 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4
+          pip install requests beautifulsoup4 playwright
+          playwright install chromium
 
-      - name: Fetch Upgraded Points data
-        id: fetch
+      - name: Fetch and parse valuations data
         run: |
-          python3 << 'EOF'
-          import requests
-          from datetime import datetime
-
-          url = "https://upgradedpoints.com/travel/points-and-miles-valuations/"
-
-          try:
-              response = requests.get(url, timeout=10)
-              response.raise_for_status()
-
-              if 'point' in response.text.lower():
-                  print("✅ Successfully fetched Upgraded Points page")
-                  print("::set-output name=success::true")
-              else:
-                  print("⚠️ Page content unexpected")
-                  print("::set-output name=success::false")
-
-          except Exception as e:
-              print(f"❌ Error: {e}")
-              print("::set-output name=success::false")
-          EOF
-        continue-on-error: true
-
-      - name: Update valuations if needed
-        if: steps.fetch.outputs.success == 'true'
-        run: |
-          python3 << 'EOF'
-          import json
-          from datetime import datetime
-
-          # Load current point-valuations.json
-          with open('point-valuations.json', 'r') as f:
-              data = json.load(f)
-
-          # Update timestamp to show we checked
-          data['last_generated'] = datetime.utcnow().isoformat() + 'Z'
-
-          # Save updated file
-          with open('point-valuations.json', 'w') as f:
-              json.dump(data, f, indent=2)
-
-          print("✅ Valuations file timestamp updated")
-          EOF
+          python3 scripts/scrape_valuations.py
         continue-on-error: true
 
       - name: Validate valuations
@@ -76,9 +34,12 @@ jobs:
         continue-on-error: true
 
       - name: Configure Git
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "Valuations Sync Bot"
           git config user.email "valuations@github.com"
+          git config --global url."https://x-access-token:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
 
       - name: Commit if changed
         run: |
