@@ -1,133 +1,378 @@
 {
   "schema_version": "1.0",
-  "last_generated": "2026-09-13T20:48:50.295671Z",
+  "last_generated": "2026-09-13T21:08:23.687449Z",
   "default_cents_per_point": 1.0,
   "valuations": [
     {
-      "program": "Delta",
-      "cents_per_point": 1.25,
+      "program": "How much would you buy points and miles for?",
+      "cents_per_point": 3.0,
       "category": "airline",
       "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.287150Z"
+      "last_updated": "2026-09-13T21:08:23.684880Z"
     },
     {
-      "program": "American Airlines",
-      "cents_per_point": 1.3,
+      "program": "Upgraded Points\u00e2\u0080\u0099 September 2026\u00c2\u00a0Points and Miles Valuations",
+      "cents_per_point": 2.2,
       "category": "airline",
       "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.287536Z"
+      "last_updated": "2026-09-13T21:08:23.684964Z"
     },
     {
-      "program": "United",
-      "cents_per_point": 1.3,
+      "program": "American Express Membership Rewards points",
+      "cents_per_point": 2.2,
       "category": "airline",
       "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.287862Z"
+      "last_updated": "2026-09-13T21:08:23.685021Z"
     },
     {
-      "program": "Alaska",
-      "cents_per_point": 1.5,
-      "category": "airline",
+      "program": "BofA Rewards points",
+      "cents_per_point": 1.0,
+      "category": "flexible",
       "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.288165Z"
+      "last_updated": "2026-09-13T21:08:23.685053Z"
     },
     {
-      "program": "Southwest",
-      "cents_per_point": 1.25,
-      "category": "airline",
-      "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.288728Z"
-    },
-    {
-      "program": "JetBlue",
+      "program": "Barclaycard Arrival miles",
       "cents_per_point": 1.0,
       "category": "airline",
       "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.289008Z"
+      "last_updated": "2026-09-13T21:08:23.685084Z"
     },
     {
-      "program": "Frontier",
-      "cents_per_point": 1.1,
-      "category": "airline",
-      "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.289328Z"
-    },
-    {
-      "program": "Marriott",
-      "cents_per_point": 0.5,
-      "category": "hotel",
-      "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.290660Z"
-    },
-    {
-      "program": "Hilton",
-      "cents_per_point": 2.0,
-      "category": "hotel",
-      "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.290982Z"
-    },
-    {
-      "program": "Hyatt",
-      "cents_per_point": 0.5,
-      "category": "hotel",
-      "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.291276Z"
-    },
-    {
-      "program": "IHG",
-      "cents_per_point": 0.6,
-      "category": "hotel",
-      "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.291824Z"
-    },
-    {
-      "program": "Wyndham",
-      "cents_per_point": 5.0,
-      "category": "hotel",
-      "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.292096Z"
-    },
-    {
-      "program": "Choice",
-      "cents_per_point": 2.2,
-      "category": "hotel",
-      "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.292378Z"
-    },
-    {
-      "program": "Accor",
-      "cents_per_point": 2.2,
-      "category": "hotel",
-      "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.292687Z"
-    },
-    {
-      "program": "Chase Ultimate Rewards",
+      "program": "Bilt Rewards Points",
       "cents_per_point": 2.0,
       "category": "flexible",
       "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.293546Z"
+      "last_updated": "2026-09-13T21:08:23.685112Z"
     },
     {
-      "program": "Citi ThankYou Points",
+      "program": "Brex Rewards points",
       "cents_per_point": 1.0,
       "category": "flexible",
       "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.294841Z"
+      "last_updated": "2026-09-13T21:08:23.685147Z"
     },
     {
-      "program": "Capital One Rewards",
-      "cents_per_point": 1.0,
+      "program": "Capital One miles",
+      "cents_per_point": 1.8,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685178Z"
+    },
+    {
+      "program": "Chase Ultimate Rewards points",
+      "cents_per_point": 2.0,
       "category": "flexible",
       "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.295219Z"
+      "last_updated": "2026-09-13T21:08:23.685210Z"
     },
     {
-      "program": "Wells Fargo Rewards",
+      "program": "Citi ThankYou Rewards Points",
       "cents_per_point": 1.6,
       "category": "flexible",
       "aliases": [],
-      "last_updated": "2026-09-13T20:48:50.295495Z"
+      "last_updated": "2026-09-13T21:08:23.685241Z"
+    },
+    {
+      "program": "Diners Club Rewards points",
+      "cents_per_point": 2.0,
+      "category": "flexible",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685271Z"
+    },
+    {
+      "program": "Rove miles",
+      "cents_per_point": 1.5,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685303Z"
+    },
+    {
+      "program": "Wells Fargo Rewards points",
+      "cents_per_point": 1.5,
+      "category": "flexible",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685333Z"
+    },
+    {
+      "program": "Airline Loyalty Programs",
+      "cents_per_point": 1.25,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685385Z"
+    },
+    {
+      "program": "Aer Lingus AerClub Avios",
+      "cents_per_point": 1.25,
+      "category": "flexible",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685439Z"
+    },
+    {
+      "program": "Air Canada Aeroplan points",
+      "cents_per_point": 1.5,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685466Z"
+    },
+    {
+      "program": "Air France-KLM Flying Blue miles",
+      "cents_per_point": 1.3,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685496Z"
+    },
+    {
+      "program": "Alaska Airlines Atmos Rewards points",
+      "cents_per_point": 1.6,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685527Z"
+    },
+    {
+      "program": "American Airlines AAdvantage miles",
+      "cents_per_point": 1.4,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685554Z"
+    },
+    {
+      "program": "All Nippon Airways (ANA) Mileage Club miles",
+      "cents_per_point": 1.4,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685582Z"
+    },
+    {
+      "program": "Asiana Airlines Asiana Club miles",
+      "cents_per_point": 1.6,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685610Z"
+    },
+    {
+      "program": "Avianca Airlines Lifemiles",
+      "cents_per_point": 1.4,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685637Z"
+    },
+    {
+      "program": "Breeze Airways Breezy Rewards",
+      "cents_per_point": 1.0,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685663Z"
+    },
+    {
+      "program": "British Airways Club Avios",
+      "cents_per_point": 1.25,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685690Z"
+    },
+    {
+      "program": "Cathay Pacific Cathay Asia miles",
+      "cents_per_point": 1.3,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685721Z"
+    },
+    {
+      "program": "Delta Air Lines SkyMiles",
+      "cents_per_point": 1.2,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685747Z"
+    },
+    {
+      "program": "Emirates Skywards miles",
+      "cents_per_point": 1.1,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685778Z"
+    },
+    {
+      "program": "Etihad Airways Etihad Guest miles",
+      "cents_per_point": 1.4,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685804Z"
+    },
+    {
+      "program": "Frontier Airlines FRONTIER miles",
+      "cents_per_point": 1.1,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685831Z"
+    },
+    {
+      "program": "Iberia Club Avios",
+      "cents_per_point": 1.25,
+      "category": "flexible",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685860Z"
+    },
+    {
+      "program": "JetBlue TrueBlue points",
+      "cents_per_point": 1.3,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685893Z"
+    },
+    {
+      "program": "Korean Air SKYPASS miles",
+      "cents_per_point": 1.6,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685920Z"
+    },
+    {
+      "program": "Lufthansa Miles & More miles",
+      "cents_per_point": 1.3,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685950Z"
+    },
+    {
+      "program": "Qatar Airways Privilege Club Avios",
+      "cents_per_point": 1.25,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.685978Z"
+    },
+    {
+      "program": "Singapore Airlines KrisFlyer miles",
+      "cents_per_point": 1.35,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686004Z"
+    },
+    {
+      "program": "Southwest Airlines Rapid Rewards points",
+      "cents_per_point": 1.3,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686032Z"
+    },
+    {
+      "program": "Turkish Airlines Miles&Smiles miles",
+      "cents_per_point": 1.3,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686058Z"
+    },
+    {
+      "program": "United Airlines MileagePlus miles",
+      "cents_per_point": 1.2,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686084Z"
+    },
+    {
+      "program": "Virgin Atlantic Flying Club Virgin Points",
+      "cents_per_point": 1.4,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686116Z"
+    },
+    {
+      "program": "ALL \u00e2\u0080\u0093 Accor Live Limitless Reward points",
+      "cents_per_point": 2.2,
+      "category": "hotel",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686195Z"
+    },
+    {
+      "program": "Best Western Rewards points",
+      "cents_per_point": 0.6,
+      "category": "hotel",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686223Z"
+    },
+    {
+      "program": "Choice Privileges points",
+      "cents_per_point": 0.6,
+      "category": "hotel",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686250Z"
+    },
+    {
+      "program": "Hilton Honors points",
+      "cents_per_point": 0.5,
+      "category": "hotel",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686277Z"
+    },
+    {
+      "program": "IHG One Rewards points",
+      "cents_per_point": 0.5,
+      "category": "hotel",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686302Z"
+    },
+    {
+      "program": "Marriott Bonvoy points",
+      "cents_per_point": 0.7,
+      "category": "hotel",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686351Z"
+    },
+    {
+      "program": "Radisson Rewards points",
+      "cents_per_point": 0.25,
+      "category": "hotel",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686401Z"
+    },
+    {
+      "program": "World of Hyatt points",
+      "cents_per_point": 1.4,
+      "category": "hotel",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686428Z"
+    },
+    {
+      "program": "Wyndham Rewards points",
+      "cents_per_point": 0.9,
+      "category": "hotel",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686453Z"
+    },
+    {
+      "program": "Transferable Points: American Express Membership Rewards Points",
+      "cents_per_point": 3.0,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686496Z"
+    },
+    {
+      "program": "Airline Miles: Alaska Airlines Atmos Rewards Points",
+      "cents_per_point": 8.0,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686513Z"
+    },
+    {
+      "program": "Plus \u00e2\u0080\u0094 expert strategies tomaximize your points & milesby joining our (free) newsletter.",
+      "cents_per_point": 5.0,
+      "category": "airline",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686680Z"
+    },
+    {
+      "program": "Chase Sapphire Preferred\u00c2\u00aeCard",
+      "cents_per_point": 5.0,
+      "category": "hotel",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686797Z"
+    },
+    {
+      "program": "(at Chase's secure site)",
+      "cents_per_point": 5.0,
+      "category": "flexible",
+      "aliases": [],
+      "last_updated": "2026-09-13T21:08:23.686831Z"
     }
   ]
 }
