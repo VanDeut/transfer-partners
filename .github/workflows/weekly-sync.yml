@@ -117,14 +117,7 @@ jobs:
         if: steps.compare.outputs.changes_found == 'true'
         run: |
           git add transfer-partners.json
-          git diff --cached --quiet || git commit -m "Auto-sync transfer rates from Roame
-
-Updated rates detected during weekly sync.
-
-Source file: ${{ steps.check_upload.outputs.roame_file }}
-Comparison output: See workflow logs for details
-
-Co-Authored-By: Transfer Partners Bot <action@github.com>"
+          git diff --cached --quiet || git commit -m "Auto-sync: Update transfer rates from Roame"
 
       - name: Push changes
         if: steps.compare.outputs.changes_found == 'true'
