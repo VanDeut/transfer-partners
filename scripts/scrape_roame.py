@@ -200,25 +200,47 @@ def parse_from_text(html_content):
 
     print(f"Extracted {len(lines)} text elements")
 
-    # Strategy: look for patterns like "Program Name" followed by ratios
+    # Strategy: look for valid program names followed by ratios
     transfers = []
+
+    # Valid keywords that indicate a program name (must be reasonably short)
+    program_keywords = ['Airlines', 'Airways', 'Club', 'Rewards', 'Plus', 'Miles', 'Mileage',
+                       'Hilton', 'Marriott', 'Hyatt', 'Choice', 'Wyndham', 'Accor', 'IHG',
+                       'Honors', 'Bonvoy', 'Privileges', 'Lotusmiles', 'EuroBonus', 'Skypass',
+                       'Aeroplan', 'LifeMiles', 'Flying', 'Skywards', 'Guest', 'MileagePlus',
+                       'TrueBlue', 'Rapid Rewards', 'Velocity', 'Infinity', 'Maharaja', 'LiveLimitless']
 
     # Look for lines with program names followed by ratio patterns
     for i in range(len(lines) - 1):
         line = lines[i]
 
-        # Check if line looks like a program name
-        if any(keyword in line for keyword in ['Airlines', 'Airways', 'Club', 'Rewards', 'Plus', 'Miles', 'Mileage', 'Hilton', 'Marriott', 'Hyatt', 'Choice', 'Wyndham', 'Accor', 'IHG']):
+        # Filter: line must be reasonable length (not a huge dump of text)
+        # and contain a program keyword
+        if len(line) < 100 and any(keyword in line for keyword in program_keywords):
             program_name = line
 
+            # Additional filter: program name shouldn't contain URL fragments or excessive numbers
+            if 'http' in program_name.lower() or 'columns' in program_name.lower() or program_name.count('2027') > 0:
+                continue
+
             # Look in next few lines for ratios
-            for j in range(i + 1, min(i + 8, len(lines))):
+            for j in range(i + 1, min(i + 5, len(lines))):
                 next_line = lines[j]
 
-                # Find all ratios in this line
+                # Find all ratios in this line, but filter out garbage
+                # Ratios should be reasonable (not "20271:1" which is a year)
                 ratios = re.findall(r'(\d+\.?\d*):(\d+\.?\d*)', next_line)
 
                 if ratios:
+                    # Filter ratios: numerator and denominator should both be < 100
+                    valid_ratios = []
+                    for num, denom in ratios:
+                        if float(num) < 100 and float(denom) < 100:
+                            valid_ratios.append((num, denom))
+
+                    if not valid_ratios:
+                        continue
+
                     # Map to known transfer partners in order
                     transfer_partners = [
                         'American Express Membership Rewards', 'Bilt', 'Capital One Rewards',
@@ -227,10 +249,10 @@ def parse_from_text(html_content):
                         'Choice Privileges', 'Brex Rewards', 'Ramp Rewards', 'Avios'
                     ]
 
-                    for idx, (num, denom) in enumerate(ratios):
+                    for idx, (num, denom) in enumerate(valid_ratios):
                         if idx < len(transfer_partners):
                             ratio = extract_ratio(f"{num}:{denom}")
-                            if ratio:
+                            if ratio and 0.1 <= ratio <= 100:  # Sanity check
                                 transfer = {
                                     'from_program': transfer_partners[idx],
                                     'to_program': program_name,
