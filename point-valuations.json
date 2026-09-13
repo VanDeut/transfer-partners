@@ -1,40 +1,287 @@
 {
   "schema_version": "1.0",
-  "last_generated": "2026-09-13T00:00:00Z",
+  "last_generated": "2026-09-13T20:45:15.035529Z",
   "default_cents_per_point": 1.0,
   "valuations": [
-    { "program": "Delta", "category": "airline", "cents_per_point": 1.2, "aliases": ["Delta Air Lines", "Delta Airlines"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "American Airlines", "category": "airline", "cents_per_point": 1.5, "aliases": [], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "United", "category": "airline", "cents_per_point": 1.3, "aliases": ["United Airlines"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Southwest", "category": "airline", "cents_per_point": 1.4, "aliases": ["Southwest Airlines"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "JetBlue", "category": "airline", "cents_per_point": 1.45, "aliases": ["JetBlue Airways"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Alaska", "category": "airline", "cents_per_point": 1.5, "aliases": ["Alaska Airlines"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Hawaiian", "category": "airline", "cents_per_point": 1.25, "aliases": ["Hawaiian Airlines"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Spirit", "category": "airline", "cents_per_point": 1.1, "aliases": ["Spirit Airlines"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Frontier", "category": "airline", "cents_per_point": 1.15, "aliases": ["Frontier Airlines"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Allegiant", "category": "airline", "cents_per_point": 0.6, "aliases": ["Allegiant Air"], "last_updated": "2026-09-13T00:00:00Z" },
-
-    { "program": "Marriott", "category": "hotel", "cents_per_point": 0.7, "aliases": ["Marriott Bonvoy"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Hilton", "category": "hotel", "cents_per_point": 0.55, "aliases": ["Hilton Honors"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Hyatt", "category": "hotel", "cents_per_point": 1.7, "aliases": ["Hyatt Hotels", "World of Hyatt"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "IHG", "category": "hotel", "cents_per_point": 0.5, "aliases": ["IHG Hotels", "IHG Rewards", "IHG One Rewards"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Choice", "category": "hotel", "cents_per_point": 0.7, "aliases": ["Choice Hotels", "Choice Privileges"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Wyndham", "category": "hotel", "cents_per_point": 0.9, "aliases": ["Wyndham Rewards"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Best Western", "category": "hotel", "cents_per_point": 0.6, "aliases": ["Best Western Rewards"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Radisson", "category": "hotel", "cents_per_point": 0.5, "aliases": ["Radisson Rewards"], "last_updated": "2026-09-13T00:00:00Z" },
-
-    { "program": "Hertz", "category": "car", "cents_per_point": 1.0, "aliases": ["Hertz Car Rental"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Avis", "category": "car", "cents_per_point": 1.0, "aliases": ["Avis Car Rental"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Enterprise", "category": "car", "cents_per_point": 1.0, "aliases": ["Enterprise Rent-A-Car"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "National", "category": "car", "cents_per_point": 1.0, "aliases": ["National Car Rental"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Budget", "category": "car", "cents_per_point": 1.0, "aliases": ["Budget Car Rental"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Alamo", "category": "car", "cents_per_point": 1.0, "aliases": ["Alamo Car Rental"], "last_updated": "2026-09-13T00:00:00Z" },
-
-    { "program": "Chase Ultimate Rewards", "category": "flexible", "cents_per_point": 2.0, "aliases": ["Chase", "Chase Rewards"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "American Express Membership Rewards", "category": "flexible", "cents_per_point": 2.0, "aliases": ["Amex", "American Express", "American Express Rewards"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Citi ThankYou Points", "category": "flexible", "cents_per_point": 1.9, "aliases": ["Citi", "Citi Rewards"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Capital One Miles", "category": "flexible", "cents_per_point": 1.85, "aliases": ["Capital One", "Capital One Rewards"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "BofA Travel Rewards", "category": "flexible", "cents_per_point": 1.0, "aliases": ["BofA", "BofA Rewards", "Bank of America"], "last_updated": "2026-09-13T00:00:00Z" },
-    { "program": "Wells Fargo Rewards", "category": "flexible", "cents_per_point": 1.6, "aliases": ["Wells Fargo"], "last_updated": "2026-09-13T00:00:00Z" }
+    {
+      "program": "Delta",
+      "category": "airline",
+      "cents_per_point": 1.2,
+      "aliases": [
+        "Delta Air Lines",
+        "Delta Airlines"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "American Airlines",
+      "category": "airline",
+      "cents_per_point": 1.5,
+      "aliases": [],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "United",
+      "category": "airline",
+      "cents_per_point": 1.3,
+      "aliases": [
+        "United Airlines"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Southwest",
+      "category": "airline",
+      "cents_per_point": 1.4,
+      "aliases": [
+        "Southwest Airlines"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "JetBlue",
+      "category": "airline",
+      "cents_per_point": 1.45,
+      "aliases": [
+        "JetBlue Airways"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Alaska",
+      "category": "airline",
+      "cents_per_point": 1.5,
+      "aliases": [
+        "Alaska Airlines"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Hawaiian",
+      "category": "airline",
+      "cents_per_point": 1.25,
+      "aliases": [
+        "Hawaiian Airlines"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Spirit",
+      "category": "airline",
+      "cents_per_point": 1.1,
+      "aliases": [
+        "Spirit Airlines"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Frontier",
+      "category": "airline",
+      "cents_per_point": 1.15,
+      "aliases": [
+        "Frontier Airlines"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Allegiant",
+      "category": "airline",
+      "cents_per_point": 0.6,
+      "aliases": [
+        "Allegiant Air"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Marriott",
+      "category": "hotel",
+      "cents_per_point": 0.7,
+      "aliases": [
+        "Marriott Bonvoy"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Hilton",
+      "category": "hotel",
+      "cents_per_point": 0.55,
+      "aliases": [
+        "Hilton Honors"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Hyatt",
+      "category": "hotel",
+      "cents_per_point": 1.7,
+      "aliases": [
+        "Hyatt Hotels",
+        "World of Hyatt"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "IHG",
+      "category": "hotel",
+      "cents_per_point": 0.5,
+      "aliases": [
+        "IHG Hotels",
+        "IHG Rewards",
+        "IHG One Rewards"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Choice",
+      "category": "hotel",
+      "cents_per_point": 0.7,
+      "aliases": [
+        "Choice Hotels",
+        "Choice Privileges"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Wyndham",
+      "category": "hotel",
+      "cents_per_point": 0.9,
+      "aliases": [
+        "Wyndham Rewards"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Best Western",
+      "category": "hotel",
+      "cents_per_point": 0.6,
+      "aliases": [
+        "Best Western Rewards"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Radisson",
+      "category": "hotel",
+      "cents_per_point": 0.5,
+      "aliases": [
+        "Radisson Rewards"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Hertz",
+      "category": "car",
+      "cents_per_point": 1.0,
+      "aliases": [
+        "Hertz Car Rental"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Avis",
+      "category": "car",
+      "cents_per_point": 1.0,
+      "aliases": [
+        "Avis Car Rental"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Enterprise",
+      "category": "car",
+      "cents_per_point": 1.0,
+      "aliases": [
+        "Enterprise Rent-A-Car"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "National",
+      "category": "car",
+      "cents_per_point": 1.0,
+      "aliases": [
+        "National Car Rental"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Budget",
+      "category": "car",
+      "cents_per_point": 1.0,
+      "aliases": [
+        "Budget Car Rental"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Alamo",
+      "category": "car",
+      "cents_per_point": 1.0,
+      "aliases": [
+        "Alamo Car Rental"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Chase Ultimate Rewards",
+      "category": "flexible",
+      "cents_per_point": 2.0,
+      "aliases": [
+        "Chase",
+        "Chase Rewards"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "American Express Membership Rewards",
+      "category": "flexible",
+      "cents_per_point": 2.0,
+      "aliases": [
+        "Amex",
+        "American Express",
+        "American Express Rewards"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Citi ThankYou Points",
+      "category": "flexible",
+      "cents_per_point": 1.9,
+      "aliases": [
+        "Citi",
+        "Citi Rewards"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Capital One Miles",
+      "category": "flexible",
+      "cents_per_point": 1.85,
+      "aliases": [
+        "Capital One",
+        "Capital One Rewards"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "BofA Travel Rewards",
+      "category": "flexible",
+      "cents_per_point": 1.0,
+      "aliases": [
+        "BofA",
+        "BofA Rewards",
+        "Bank of America"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    },
+    {
+      "program": "Wells Fargo Rewards",
+      "category": "flexible",
+      "cents_per_point": 1.6,
+      "aliases": [
+        "Wells Fargo"
+      ],
+      "last_updated": "2026-09-13T00:00:00Z"
+    }
   ]
 }
