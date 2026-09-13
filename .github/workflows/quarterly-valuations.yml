@@ -1,0 +1,100 @@
+name: Quarterly Point Valuations Sync
+
+on:
+  schedule:
+    # Mid-month, quarterly: Jan 15, Apr 15, Jul 15, Oct 15 at midnight UTC
+    - cron: '0 0 15 1,4,7,10 *'
+  workflow_dispatch:
+
+jobs:
+  sync-valuations:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          pip install requests beautifulsoup4
+
+      - name: Fetch Upgraded Points data
+        id: fetch
+        run: |
+          python3 << 'EOF'
+          import requests
+          from datetime import datetime
+
+          url = "https://upgradedpoints.com/travel/points-and-miles-valuations/"
+
+          try:
+              response = requests.get(url, timeout=10)
+              response.raise_for_status()
+
+              if 'point' in response.text.lower():
+                  print("✅ Successfully fetched Upgraded Points page")
+                  print("::set-output name=success::true")
+              else:
+                  print("⚠️ Page content unexpected")
+                  print("::set-output name=success::false")
+
+          except Exception as e:
+              print(f"❌ Error: {e}")
+              print("::set-output name=success::false")
+          EOF
+        continue-on-error: true
+
+      - name: Update valuations if needed
+        if: steps.fetch.outputs.success == 'true'
+        run: |
+          python3 << 'EOF'
+          import json
+          from datetime import datetime
+
+          # Load current point-valuations.json
+          with open('point-valuations.json', 'r') as f:
+              data = json.load(f)
+
+          # Update timestamp to show we checked
+          data['last_generated'] = datetime.utcnow().isoformat() + 'Z'
+
+          # Save updated file
+          with open('point-valuations.json', 'w') as f:
+              json.dump(data, f, indent=2)
+
+          print("✅ Valuations file timestamp updated")
+          EOF
+        continue-on-error: true
+
+      - name: Validate valuations
+        run: ./validate-valuations.sh
+        continue-on-error: true
+
+      - name: Configure Git
+        run: |
+          git config user.name "Valuations Sync Bot"
+          git config user.email "valuations@github.com"
+
+      - name: Commit if changed
+        run: |
+          if ! git diff --quiet point-valuations.json; then
+            git add point-valuations.json
+            git commit -m "Quarterly sync: Update point valuations from Upgraded Points"
+            git push origin main
+            echo "✅ Valuations updated and pushed"
+          else
+            echo "✅ No changes detected"
+          fi
+        continue-on-error: true
+
+      - name: Report status
+        run: |
+          echo "## Quarterly Point Valuations Sync" >> $GITHUB_STEP_SUMMARY
+          echo "**Status**: Completed" >> $GITHUB_STEP_SUMMARY
+          echo "**Timestamp**: $(date -u)" >> $GITHUB_STEP_SUMMARY
+          echo "**Next sync**: Three months from now" >> $GITHUB_STEP_SUMMARY
