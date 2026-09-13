@@ -260,3 +260,56 @@ UTF-8, no BOM. Watch for mojibake from scrapers (`â€“`, `Â®`, `Ã©`) —
 - [ ] Every app built-in name listed above appears in some valuation row's `program` or `aliases`.
 - [ ] No program names longer than ~40 chars, no `?`, no sentences — those are scraper junk.
 - [ ] Row counts are in the expected range (transfers ≈ 55–75, valuations ≈ 30–60). A big drop means a scraper broke.
+
+## Common mistakes to avoid
+
+### Transfer ratios inverted
+
+**Most common mistake**: Published rate `5:4` (Amex → Emirates) means "5,000 MR = 4,000 Skywards" → ratio should be `0.8`, not `1.25`.
+
+The formula is always: `destination_points = source_points × ratio`
+
+**Check before entering:**
+- If ratio > 1.0, user gains points on transfer (rare, valid only for Choice, some hotel promos)
+- If ratio < 1.0, user loses points on transfer (normal for most programs)
+- If 1:1.6 published (Amex → Aeromexico), ratio is `1.6` (user gets 1.6x)
+- If 1:2 published (Amex → Hilton), ratio is `2.0` (user gets 2x, this is a bonus)
+- If 5:4 published (Amex → Emirates), ratio is `0.8` (user gets 0.8x, they lose points)
+
+Sanity check: Search "1000 MR to Emirates" on Amex's site and count the Skywards you'd receive.
+
+### Missing or incomplete aliases
+
+**Current missing app names that must resolve**: Bank of America, Bilt, Spirit Airlines, Allegiant Air, Hawaiian Airlines, Lufthansa, Qatar Airways, Japan Airlines, Korean Air, and all six car rentals (Hertz, Avis, Budget, Enterprise, National, Alamo).
+
+Before saving:
+1. Run `./validate-valuations.sh` — it will tell you row counts
+2. If a program exists in current JSON but you can't find it in new data, **keep the row** and just update the valuation
+3. If aliases say `["delta"]` but user could type "Delta Air Lines", add that alias
+4. Check the app's Settings → Loyalty Accounts for exact built-in names
+
+### Missing brand words in program names
+
+**Avios, Flying Blue, ALL are shared currencies — they need the airline/hotel name:**
+- ✓ `"British Airways Avios"`, `"Iberia Avios"`, `"Aer Lingus AerClub Avios"`
+- ✗ Just `"Avios"` won't match any airline
+
+**Cathay Pacific matching requires "Pacific":**
+- ✓ `"Cathay Pacific Asia Miles"` matches app's "Cathay Pacific"
+- ✗ `"Cathay Asia Miles"` won't match
+
+### Programs that already exist but need new rows
+
+If Capital One added a transfer partner, or Amex changed a ratio:
+- **Don't create a duplicate row** — update the existing row's ratio
+- Only add a new row if it's a new (issuer, destination) pair
+
+### Forgotten updates to multiple issuers
+
+If Emirates changed from 5:4 to 1:1 on Amex, **check if Capital One and Citi also changed**. Search each issuer's site separately; don't assume all are the same.
+
+### Date format errors
+
+- ✓ `"2026-09-13T21:35:00Z"` (no fractional seconds)
+- ✗ `"2026-09-13T21:35:00.000000Z"` (will fail on older iOS)
+- ✗ `"2026-09-13 21:35:00"` (wrong format entirely)
