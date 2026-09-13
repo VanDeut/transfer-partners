@@ -22,75 +22,13 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4
+          pip install requests beautifulsoup4 playwright
+          playwright install chromium
 
       - name: Fetch and parse Roame data
-        id: fetch
+        id: sync
         run: |
-          python3 << 'EOF'
-          import requests
-          from bs4 import BeautifulSoup
-          import json
-          from datetime import datetime
-
-          url = "https://roame.travel/transfer-partners-cheat-sheet"
-
-          try:
-              response = requests.get(url, timeout=10)
-              response.raise_for_status()
-
-              soup = BeautifulSoup(response.text, 'html.parser')
-
-              # Extract transfer data from the page
-              # This is a simplified extraction - may need adjustment if Roame changes structure
-              tables = soup.find_all('table')
-
-              if tables:
-                  print("✅ Found transfer data on Roame page")
-                  print("::set-output name=success::true")
-              else:
-                  print("⚠️ Could not find transfer table")
-                  print("::set-output name=success::false")
-
-          except Exception as e:
-              print(f"❌ Error: {e}")
-              print("::set-output name=success::false")
-          EOF
-        continue-on-error: true
-
-      - name: Parse and update rates
-        if: steps.fetch.outputs.success == 'true'
-        run: |
-          python3 << 'EOF'
-          import requests
-          from bs4 import BeautifulSoup
-          import json
-          from datetime import datetime
-
-          # Fetch the page
-          url = "https://roame.travel/transfer-partners-cheat-sheet"
-          response = requests.get(url, timeout=10)
-          soup = BeautifulSoup(response.text, 'html.parser')
-
-          # Load current transfer-partners.json
-          with open('transfer-partners.json', 'r') as f:
-              data = json.load(f)
-
-          # Extract transfer rates from visible text
-          page_text = soup.get_text()
-
-          print("📊 Roame page fetched and parsed")
-          print(f"✅ Data current as of {datetime.now().isoformat()}")
-
-          # Update timestamp
-          data['last_generated'] = datetime.utcnow().isoformat() + 'Z'
-
-          # Save updated file
-          with open('transfer-partners.json', 'w') as f:
-              json.dump(data, f, indent=2)
-
-          print("✅ Updated transfer-partners.json")
-          EOF
+          python3 scripts/scrape_roame.py
         continue-on-error: true
 
       - name: Validate JSON
