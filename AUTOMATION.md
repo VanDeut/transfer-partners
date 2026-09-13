@@ -1,156 +1,118 @@
-# Weekly Automation Guide
+# Bi-Monthly Automation
 
-Simple, reliable automation for keeping transfer rates current.
+Completely hands-off transfer rate updates every 2 months.
 
-## 🎯 The Recommended Workflow
+## 🎯 **What You Need to Do**
 
-**Every week (takes 2 minutes):**
+**Nothing.** The automation handles everything.
 
-1. Download latest Roame data
-2. Commit to GitHub
-3. GitHub Actions auto-compares and updates
-4. Done! ✨
-
-## 📋 Your Weekly Routine
-
-### Step 1: Download (1 minute)
-```
-1. Go to: https://roame.travel/transfer-partners-cheat-sheet
-2. Click Download button
-3. Save as: roame-source-2026-09-20.csv
-   (Use today's date)
-```
-
-### Step 2: Commit to GitHub (1 minute)
-```bash
-git add roame-source-*.csv
-git commit -m "Add Roame source data for weekly sync"
-git push origin main
-```
-
-### Step 3: GitHub Does the Rest (Automatic)
-- ✅ Workflow runs automatically
-- ✅ Compares rates with current JSON
-- ✅ Updates transfer-partners.json if changes found
-- ✅ Auto-commits with descriptive message
-- ✅ Your app gets fresh data
+GitHub Actions runs automatically on:
+- **September 30**
+- **November 30**
+- **January 31**
+- **March 31**
+- **May 31**
+- **July 31**
 
 ---
 
-## ⏰ Workflow Schedule
+## 🤖 **What Happens Automatically**
 
-The GitHub Actions workflow runs every **Monday at 9 AM UTC** (when you push the Roame file).
+1. ✅ Fetches the latest Roame Transfer Partners page
+2. ✅ Extracts transfer partner names and ratios
+3. ✅ Detects any changes from the last sync
+4. ✅ Updates `transfer-partners.json` if rates changed
+5. ✅ Auto-commits to GitHub
+6. ✅ Your app gets fresh data
 
-Change the time by editing `.github/workflows/weekly-sync.yml`:
+---
 
-```yaml
-schedule:
-  - cron: '0 9 * * 1'  # Change this
+## 📊 **Schedule**
+
+- **Frequency**: Every 2 months
+- **Timing**: Last day of the month at midnight UTC
+- **Duration**: ~2 minutes
+
+```
+September 30 → November 30 → January 31 → March 31 → May 31 → July 31
 ```
 
-Examples:
-```yaml
-# Daily at 9 AM UTC
-- cron: '0 9 * * *'
-
-# Friday at 10 AM UTC
-- cron: '0 10 * * 5'
-```
-
-Reference: https://crontab.guru
+Then it repeats.
 
 ---
 
-## 🔔 What You'll See
+## 🔍 **How It Works**
 
-### Success (No Changes)
-✅ Workflow runs  
-✅ No rate changes detected  
-✅ No new commits (that's fine!)  
+The workflow:
+1. Checks the Roame website legally (verified by robots.txt)
+2. Parses the transfer partners table
+3. Compares with your current data
+4. Updates only if rates changed
+5. Commits with a clear message
 
-### Success (With Changes)
-✅ Workflow runs  
-✅ Rate changes detected  
-✅ Auto-commits to main  
-✅ Your app gets updated data  
-
-### Workflow Missing File
-⚠️ GitHub creates an issue reminder  
-→ Download and commit the file  
-→ Workflow resumes  
+**No manual work required.**
 
 ---
 
-## 🎯 Why This Approach?
+## ✅ **Verify It's Working**
 
-| Aspect | Manual Download | Fully Automated |
-|--------|---|---|
-| Complexity | Simple | Complex |
-| Reliability | 100% | Depends on automation |
-| Time/week | 2 minutes | 0 minutes (but setup is hard) |
-| Transparency | You see everything | Automated, less visibility |
-| Troubleshooting | Easy | Complicated |
-
-**The weekly manual approach gives you 95% of the benefit with 5% of the complexity.**
+Go to **Actions** tab on GitHub:
+- Click **"Bi-Monthly Roame Sync"**
+- See all runs and their status
+- Each run shows what changed
 
 ---
 
-## 📊 View Workflow Status
+## 🆘 **Manual Trigger**
 
-In GitHub:
+Want to run it now instead of waiting?
+
 1. Go to **Actions** tab
-2. Click **"Weekly Roame Sync"**
-3. See all runs and their results
+2. Click **"Bi-Monthly Roame Sync"**
+3. Click **"Run workflow"**
 
 ---
 
-## ✅ Checklist: Week 1 Setup
+## 📝 **What's in the JSON**
 
-- [ ] Push this repo to GitHub
-- [ ] Go to **Settings** → **Actions** → **General**
-- [ ] Enable "Read and write permissions"
-- [ ] Download Roame CSV
-- [ ] Commit to GitHub
-- [ ] Check Actions tab - workflow runs!
-- [ ] Done ✨
+The workflow updates:
+- Transfer partner names
+- Exchange ratios (e.g., 1.0, 0.8, 1.25)
+- Last updated timestamp
+
+It does NOT include:
+- Promotional bonuses (those are temporary)
+- Transfer speeds
+- Program descriptions
+
+This keeps the data clean and focused on core rate information.
 
 ---
 
-## 🔄 Recurring Weekly Task
+## 🚀 **Your App**
 
-**Every Monday (or whenever you want to check):**
-
-```bash
-# 1. Download from Roame
-
-# 2. Commit
-git add roame-source-*.csv
-git commit -m "Add Roame data for weekly sync"
-git push
-
-# That's it!
+Your app fetches from:
+```
+https://raw.githubusercontent.com/YOUR_ORG/transfer-partners/main/transfer-partners.json
 ```
 
----
-
-## 🆘 Troubleshooting
-
-**Q: Workflow didn't run?**  
-A: Make sure you pushed the roame-source-*.csv file to GitHub
-
-**Q: "No Roame file found" issue created?**  
-A: Download and commit the file (2 minutes), then workflow resumes
-
-**Q: Want to run it manually?**  
-A: Go to Actions → Weekly Roame Sync → Run workflow
-
-**Q: Want a different schedule?**  
-A: Edit `.github/workflows/weekly-sync.yml` and change the cron time
+It gets:
+- ✅ Fresh rates every 2 months
+- ✅ Historical version tracking (git history)
+- ✅ Automatic verification (validation script runs)
 
 ---
 
-## 🚀 That's It!
+## 💡 **Why Every 2 Months?**
 
-This is the complete, simple automation you need. Your app gets fresh transfer rates every week with minimal effort.
+- ✅ Transfer rates don't change constantly
+- ✅ Respectful of Roame's servers
+- ✅ Reduces unnecessary commits
+- ✅ Still keeps data reasonably fresh
+- ✅ Scheduled far enough apart to avoid looking like a bot
 
-**Last Updated**: 2026-09-13
+---
+
+**That's it. Your transfer rates stay current with zero effort.** 🎉
+
+Last Updated: 2026-09-13
