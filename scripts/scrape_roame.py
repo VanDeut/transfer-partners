@@ -42,28 +42,46 @@ def get_program_category(program_name):
     return 'airline'
 
 def scrape_roame():
-    """Fetch Roame page with retries."""
-    max_retries = 3
+    """Fetch Roame page - prioritize Playwright for JS rendering."""
     print("Fetching Roame transfer partners data...")
 
+    # Try Playwright first (handles JavaScript rendering)
+    try:
+        from playwright.sync_api import sync_playwright
+
+        print("Using Playwright for JavaScript rendering...")
+        with sync_playwright() as p:
+            browser = p.chromium.launch(headless=True)
+            page = browser.new_page()
+            page.goto('https://roame.travel/transfer-partners-cheat-sheet', timeout=60000)
+            page.wait_for_load_state('networkidle', timeout=30000)
+            content = page.content()
+            browser.close()
+            if len(content) > 10000:
+                print("✅ Page fetched successfully via Playwright")
+                return content
+    except Exception as e:
+        print(f"⚠️  Playwright failed: {e}")
+
+    # Fallback to requests
+    print("Falling back to requests...")
     import requests
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36'}
 
-    for attempt in range(max_retries):
-        try:
-            response = requests.get(
-                'https://roame.travel/transfer-partners-cheat-sheet',
-                headers=headers,
-                timeout=30
-            )
-            response.raise_for_status()
-            if len(response.text) > 5000:
-                print("✅ Page fetched successfully")
-                return response.text
-        except Exception as e:
-            print(f"Attempt {attempt + 1}/{max_retries}: {e}")
+    try:
+        response = requests.get(
+            'https://roame.travel/transfer-partners-cheat-sheet',
+            headers=headers,
+            timeout=30
+        )
+        response.raise_for_status()
+        if len(response.text) > 5000:
+            print("✅ Page fetched via requests")
+            return response.text
+    except Exception as e:
+        print(f"❌ Requests failed: {e}")
 
-    print("❌ Failed to fetch page")
+    print("❌ Failed to fetch page with all methods")
     return None
 
 def parse_roame_table(html_content):
@@ -173,11 +191,14 @@ def parse_from_text(html_content):
     for script in soup(['script', 'style']):
         script.decompose()
 
-    # Get text
-    text = soup.get_text()
-    lines = [line.strip() for line in text.split('\n') if line.strip()]
+    # Extract text from elements with newlines preserved
+    lines = []
+    for element in soup.find_all(['div', 'span', 'p', 'td', 'h2', 'h3', 'h4', 'li']):
+        text = element.get_text(strip=True)
+        if text and len(text) > 1:
+            lines.append(text)
 
-    print(f"Extracted {len(lines)} lines of text")
+    print(f"Extracted {len(lines)} text elements")
 
     # Strategy: look for patterns like "Program Name" followed by ratios
     transfers = []
