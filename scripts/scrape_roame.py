@@ -97,10 +97,23 @@ def parse_transfers(html_content):
     ]
 
     soup = BeautifulSoup(html_content, 'html.parser')
-    text = soup.get_text()
-    lines = text.split('\n')
+
+    # Better text extraction: get text from elements and preserve some structure
+    text_parts = []
+    for element in soup.find_all(['p', 'div', 'span', 'td', 'tr']):
+        text = element.get_text(strip=True)
+        if text:
+            text_parts.append(text)
+
+    text = '\n'.join(text_parts)
+    lines = [line.strip() for line in text.split('\n') if line.strip()]
 
     print(f"Page has {len(lines)} lines")
+
+    if len(lines) < 10:
+        print(f"⚠️  Very few lines extracted. First 5 lines:")
+        for i, line in enumerate(lines[:5]):
+            print(f"  {i}: {line[:100]}")
 
     # Strategy: Find all airline/program names, then look for ratios in nearby lines
     transfers = {}  # Use dict to deduplicate
@@ -121,6 +134,8 @@ def parse_transfers(html_content):
         'Hyatt': 'World of Hyatt',
         'IHG': 'IHG Rewards',
     }
+
+    print(f"Looking for programs: {', '.join(program_keywords.keys())}")
 
     # Find each program and extract ratios that follow
     for i, line in enumerate(lines):
