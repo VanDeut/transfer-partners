@@ -715,6 +715,83 @@
       "ratio": 2.0,
       "category": "hotel",
       "last_updated": "2026-09-14T00:00:00Z"
+    },
+    {
+      "from_program": "Wells Fargo Rewards",
+      "to_program": "Aer Lingus AerClub",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-14T00:00:00Z"
+    },
+    {
+      "from_program": "Wells Fargo Rewards",
+      "to_program": "Air France-KLM Flying Blue",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-14T00:00:00Z"
+    },
+    {
+      "from_program": "Wells Fargo Rewards",
+      "to_program": "Avianca Lifemiles",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-14T00:00:00Z"
+    },
+    {
+      "from_program": "Wells Fargo Rewards",
+      "to_program": "British Airways Avios",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-14T00:00:00Z"
+    },
+    {
+      "from_program": "Wells Fargo Rewards",
+      "to_program": "Cathay Pacific Asia Miles",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-14T00:00:00Z"
+    },
+    {
+      "from_program": "Wells Fargo Rewards",
+      "to_program": "Iberia Plus",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-14T00:00:00Z"
+    },
+    {
+      "from_program": "Wells Fargo Rewards",
+      "to_program": "JetBlue TrueBlue",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-14T00:00:00Z"
+    },
+    {
+      "from_program": "Wells Fargo Rewards",
+      "to_program": "Virgin Atlantic Flying Club",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-14T00:00:00Z"
+    },
+    {
+      "from_program": "Wells Fargo Rewards",
+      "to_program": "Virgin Red",
+      "ratio": 1.0,
+      "category": "airline",
+      "last_updated": "2026-09-14T00:00:00Z"
+    },
+    {
+      "from_program": "Wells Fargo Rewards",
+      "to_program": "Choice Privileges",
+      "ratio": 2.0,
+      "category": "hotel",
+      "last_updated": "2026-09-14T00:00:00Z"
+    },
+    {
+      "from_program": "Wells Fargo Rewards",
+      "to_program": "Wyndham Rewards",
+      "ratio": 2.0,
+      "category": "hotel",
+      "last_updated": "2026-09-14T00:00:00Z"
     }
   ]
 }
